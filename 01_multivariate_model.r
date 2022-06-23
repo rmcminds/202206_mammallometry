@@ -144,7 +144,7 @@ sampling_command <- paste(paste0('./', model_name),
                          ('opencl platform=0 device=2')[opencl],
                          sep=' ')
 
-file.copy(file.path(model_dir, model_name), output_prefix)
+file.copy(file.path(model_dir, paste0(model_name,'.stan')), output_prefix, overwrite = TRUE)
 setwd(cmdstanr::cmdstan_path())
 system(paste0(c('make ', 'make STAN_OPENCL=true ')[opencl+1], file.path(output_prefix, model_name)))
 
